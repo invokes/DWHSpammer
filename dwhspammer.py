@@ -6,6 +6,7 @@ credit = """
 print(credit)
 
 import time
+import threading
 from discord_webhook import DiscordWebhook, DiscordEmbed
 
 webhookurl = input("Enter the url of the webhook: ")
@@ -16,10 +17,9 @@ waitime = input("Enter how long would you like to wait before another message is
 
 
 spam = True
-
 while spam:
-    time.sleep(waitime)
+    time.sleep(float(waitime))
     webhook = DiscordWebhook(url=webhookurl)
     embed = DiscordEmbed(title=titlemsg, description=msgcontent)
     webhook.add_embed(embed)
-    response = webhook.execute()
+    webhook.execute()
